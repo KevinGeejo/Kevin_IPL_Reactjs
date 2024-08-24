@@ -50,6 +50,18 @@ const Navbar = () => {
                 Home
                 <span className="absolute h-0.5 bg-white bottom-0 left-0 w-0 transition-all duration-500 ease-out dark:from-white dark:to-white"></span>
               </Link>
+              <Link
+              href="" 
+                to="/matches"
+                spy={true} 
+      smooth={true} 
+      offset={-190} 
+      duration={500} 
+                className="relative overflow-hidden text-gray-300 hover:bg-[#c19d13] hover:text-black px-3 py-2 rounded-md text-sm font-medium"
+              >
+                Matches
+                <span className="absolute h-0.5 bg-white bottom-0 left-0 w-0 transition-all duration-500 ease-out dark:from-white dark:to-white"></span>
+              </Link>
 
               <Link
               href="" 

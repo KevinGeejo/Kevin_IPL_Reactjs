@@ -4,6 +4,7 @@ import Home from "./HomeComponent"
 import AddPlayerComponent from "./AddPlayerComponent"
 import Navbar from "./NavigationComponent" 
 import PlayerList from "./PlayerList"
+import MatchDetails from "./MatchStatsComponent"
 
 
 
@@ -14,6 +15,7 @@ const RouterConfiguration =() => {
     
         <Routes>
             <Route path="/" element={<Home/>}/>
+            <Route path="/matches" element={<MatchDetails/>}/>
             <Route path="/players" element={<PlayerList/>}/>
            
             <Route path="/players/add" element={<AddPlayerComponent />}/>

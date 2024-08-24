@@ -18,6 +18,23 @@ async function getPlayer(){
     return data;
 }
 
+async function getMatchStats(){
+    const URL =`http://localhost:5298/api/Ipl/GetMatchStatistics`
+    let data = null;
+    try{
+        let response = await axios.get(URL)
+        if(response.status === 200 && response.data !== null){
+            data = await response.data
+            console.log("Data from api" + JSON.stringify(data))
+        }
+        
+    }
+    catch(error){
+        return JSON.stringify(error)
+    }
+    return data;
+}
+
 
 const addPlayer = async (player)=>{
     const url = `http://localhost:5298/api/Ipl/AddPlayer`
@@ -42,4 +59,4 @@ const addPlayer = async (player)=>{
 
 
 
-export { getPlayer, addPlayer };
+export { getPlayer, addPlayer ,getMatchStats };
