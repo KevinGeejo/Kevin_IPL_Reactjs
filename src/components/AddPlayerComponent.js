@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { addPlayer } from '../services/productApiService';
+import Navbar from './NavigationComponent';
+
 
 const AddPlayerComponent = () => {
     const [player, setPlayer] = useState({ playerId: 0, playerName: '', teamId: 0, role: '', age: 0, matchesPlayed: 0 });
@@ -36,36 +38,55 @@ const AddPlayerComponent = () => {
     };
 
     return (
-        <>
-            <h1 className='text-white'>Add a new Player</h1>
-            <form className='form-group text-white' onSubmit={validate}>
-                <div className='text-white'>
-                    Id: <input className='form-control' value={player.playerId} onChange={onChange} type='number' id='playerId' />
-                    {errors.playerId && <span className='text-danger'>{errors.playerId}</span>}
-                </div>
-                <div>
-                    Player Name: <input className='form-control' value={player.playerName} onChange={onChange} type='text' id='playerName' />
-                    {errors.playerName && <span className='text-danger'>{errors.playerName}</span>}
-                </div>
-                <div>
-                    Team Id: <input className='form-control' value={player.teamId} onChange={onChange} type='number' id='teamId' />
-                    {errors.teamId && <span className='text-danger'>{errors.teamId}</span>}
-                </div>
-                <div>
-                    Role: <input className='form-control' value={player.role} onChange={onChange} type='text' id='role' />
-                    {errors.role && <span className='text-danger'>{errors.role}</span>}
-                </div>
-                <div>
-                    Age: <input className='form-control' value={player.age} onChange={onChange} type='number' id='age' />
-                    {errors.age && <span className='text-danger'>{errors.age}</span>}
-                </div>
-                <div>
-                    Matches Played: <input className='form-control' value={player.matchesPlayed} onChange={onChange} type='number' id='matchesPlayed' />
-                    {errors.matchesPlayed && <span className='text-danger'>{errors.matchesPlayed}</span>}
-                </div>
-                <button className='btn btn-primary m-2 p-3' type='submit'>Add new Player</button>
-            </form>
-        </>
+       <>
+
+        <div className='bg-[#0b0b13]'>
+
+             <Navbar/>
+        <div className='bg-[#0b0b13] h-dvh text-white pt-10'>
+            <h1 className='text-lg text-white flex justify-center'>Add a new Player</h1>
+            
+
+<form class="max-w-md mx-auto" onSubmit={validate}>
+  <div class="relative z-0 w-full mb-5 group">
+      <input value={player.playerId} onChange={onChange}  id='playerId' name="floating_email"  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+      <label for="floating_email" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Player Id</label>
+      {errors.playerId && <span className='text-red'>{errors.playerId}</span>}
+  </div>
+  <div class="relative z-0 w-full mb-5 group">
+      <input value={player.playerName} onChange={onChange} type='text' id='playerName' name="floating_password"  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+      <label for="floating_password" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Player Name</label>
+      {errors.playerName && <span className='text-red'>{errors.playerName}</span>}
+  </div>
+  <div class="relative z-0 w-full mb-5 group">
+      <input value={player.teamId} onChange={onChange}  id='teamId' name="repeat_password"  class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+      <label for="floating_repeat_password" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Team Id</label>
+      {errors.teamId && <span className='text-red'>{errors.teamId}</span>}
+  </div>
+  <div class="relative z-0 w-full mb-5 group">
+      <input value={player.matchesPlayed} onChange={onChange}  id='matchesPlayed' name="repeat_password"  class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+      <label for="floating_repeat_password" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Matches Played</label>
+      {errors.matchesPlayed && <span className='text-danger'>{errors.matchesPlayed}</span>}
+  </div>
+  <div class="grid md:grid-cols-2 md:gap-6">
+    <div className="relative z-0 w-full mb-5 group">
+        <input value={player.role} onChange={onChange} type='text' id='role' name="floating_first_name"  class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+        <label for="floating_first_name" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Role</label>
+        {errors.role && <span className='text-red'>{errors.role}</span>}
+    </div>
+    <div class="relative z-0 w-full mb-5 group">
+        <input value={player.age} onChange={onChange}  id='age' name="floating_last_name"  class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+        <label for="floating_last_name" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Age</label>
+        {errors.age && <span className='text-red'>{errors.age}</span>}
+    </div>
+  </div>
+  
+  <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+</form>
+
+        </div>
+        </div>
+       </>
     );
 };
 

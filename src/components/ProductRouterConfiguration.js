@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"
 
 import Home from "./HomeComponent"
 import AddPlayerComponent from "./AddPlayerComponent"
-import PlayerNavigation from "./NavigationComponent" 
+import Navbar from "./NavigationComponent" 
 import PlayerList from "./PlayerList"
 
 
@@ -10,7 +10,7 @@ import PlayerList from "./PlayerList"
 const RouterConfiguration =() => {
     return <BrowserRouter>
 
-<PlayerNavigation/>
+        
     
         <Routes>
             <Route path="/" element={<Home/>}/>
