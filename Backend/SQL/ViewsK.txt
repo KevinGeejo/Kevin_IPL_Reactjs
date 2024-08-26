@@ -1,0 +1,79 @@
+
+----------------VIEWS IPL----------------
+
+--1.  Create a view named TopPerformers that shows the names of players, their teams, and the number of matches they have played, filtering only those who have played more than 100 matches.
+
+create view TopPerformers as
+select Players.player_name,Teams.team_name, Players.matches_played
+from Players
+join Teams on Players.team_id = Teams.team_id
+where Players.matches_played > 100;
+
+select * from TopPerformers;
+
+--2. Create a view named MatchHighlights that displays the match date, teams involved, venue, and the winner of each match.
+
+create view MatchHighlights as
+select Matches.match_date,
+    Teams1.team_name as team1,
+    Teams2.team_name as team2,
+    Matches.venue,
+    Winners.team_name as winner
+from Matches
+join Teams AS Teams1 ON Matches.team1_id = Teams1.team_id
+join Teams AS Teams2 ON Matches.team2_id = Teams2.team_id
+left join Teams AS Winners ON Matches.winner_team_id = Winners.team_id;
+
+
+select * from MatchHighlights;
+
+
+
+--3.   Create a view named FanEngagementStats that summarizes the total engagements for each match, including match date and venue.
+
+create view FanEngagementStats as
+select Matches.match_date,
+    Matches.venue,
+    count(Fan_Engagement.engagement_id) as total_engagements
+from Matches
+join Fan_Engagement on Matches.match_id = Fan_Engagement.match_id
+group by Matches.match_date, Matches.venue;
+
+select * from FanEngagementStats
+
+
+--4. Create a view named TeamPerformance that shows each team's name, the number of matches played, and the number of matches won.
+
+create view TeamPerformance AS
+select Teams.team_name,
+ COUNT(Matches.match_id) AS matches_played,
+ COUNT(case when Matches.winner_team_id = Teams.team_id then 1 end) AS matches_won
+from Teams
+left join Matches ON Teams.team_id = Matches.team1_id OR Teams.team_id = Matches.team2_id
+group by Teams.team_name;
+
+select * from TeamPerformance
+
+
+--5. Create a view named TeamEngagementSummary that summarizes fan engagements for each team per match, including:
+
+   -- Match date and venue.
+   -- Team names (both teams).
+   --Total number of engagements for each team in each match.
+   --The date of the team's most engaged match (highest engagement).
+   --The fan ID who engaged the most during the team's most engaged match.
+
+create view TeamEngagementSummary as
+select m.match_date,m.venue, t1.team_name as team1,t2.team_name as team2,
+sum(case when p1.team_id = m.team1_id or p2.team_id = m.team2_id then 1 else 0 end) as total_engagements,
+max(m.match_date) as most_engaged_date,
+max(f.fan_id) as most_engaged_fan_id
+from matches m
+join teams t1 on m.team1_id = t1.team_id
+join teams t2 on m.team2_id = t2.team_id
+left join fan_engagement f on m.match_id = f.match_id
+left join players p1 on p1.team_id = t1.team_id
+left join players p2 on p2.team_id = t2.team_id
+group by m.match_date, m.venue, t1.team_name, t2.team_name;
+
+select * from TeamEngagementSummary;
