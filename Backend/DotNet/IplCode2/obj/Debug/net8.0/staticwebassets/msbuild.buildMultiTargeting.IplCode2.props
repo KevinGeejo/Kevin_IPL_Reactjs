@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\IplCode2.props" />
+</Project>
